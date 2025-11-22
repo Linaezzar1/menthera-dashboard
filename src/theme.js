@@ -2,9 +2,16 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#5B4FB3" },
-    secondary: { main: "#9B8FDB" },
-    background: { default: "linear-gradient(135deg, #5B4FB3 0%, #7B68C8 50%, #9B8FDB 100%)" }
+    primary: { main: "#6B5FE8" }, // violet-bleu principal
+    secondary: { main: "#5DD9F5" }, // cyan/bleu clair (accents)
+    background: { 
+      default: "#1A0E3E", // bleu-violet très foncé
+      paper: "rgba(255,255,255,0.08)" // cards semi-transparentes
+    },
+    text: {
+      primary: "#FFFFFF",
+      secondary: "rgba(255,255,255,0.7)"
+    }
   },
   typography: {
     fontFamily: '"Poppins", "Cinzel", serif, sans-serif',
@@ -12,11 +19,13 @@ const theme = createTheme({
       fontFamily: '"Cinzel", serif',
       fontWeight: 700,
       fontSize: 32,
+      color: "#FFFFFF"
     },
     h2: {
       fontFamily: '"Cinzel", serif',
       fontWeight: 600,
       fontSize: 26,
+      color: "#FFFFFF"
     },
   },
   shape: {
