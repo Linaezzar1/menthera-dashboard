@@ -1,10 +1,43 @@
-import React from "react";
-import { Box, Paper, Typography, TextField, Button, InputAdornment } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Paper, Typography, TextField, Button, InputAdornment, Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/mentheraLogo1.png";
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import AuthService from "../services/authService";
 
-export default function Login({ onLogin }) {
+export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    setError('');
+    setLoading(true);
+
+    try {
+      await AuthService.login(email, password);
+      
+      // Redirection vers le dashboard après login réussi
+      navigate('/dashboard');
+      
+    } catch (err) {
+      const message = err.response?.data?.message || 'Email ou mot de passe incorrect';
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Permettre la soumission avec la touche Enter
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -18,7 +51,6 @@ export default function Login({ onLogin }) {
         overflow: "hidden"
       }}
     >
-      {/* Container principal */}
       <Box sx={{
         display: "flex",
         width: { xs: "95vw", md: "850px" },
@@ -28,7 +60,7 @@ export default function Login({ onLogin }) {
         boxShadow: 8,
         background: "rgba(55,31,89,0.06)"
       }}>
-        {/* Bloc gauche - branding / bienvenue */}
+        {/* Bloc gauche */}
         <Box sx={{
           flex: 1,
           bgcolor: "rgba(99,72,185, 0.15)",
@@ -42,7 +74,7 @@ export default function Login({ onLogin }) {
           <img src={Logo} alt="logo" style={{ height: 350, width: 350 }} />
         </Box>
 
-        {/* Bloc droit - Formulaire login glassmorphisme */}
+        {/* Bloc droit - Formulaire */}
         <Box sx={{
           flex: 1,
           display: "flex",
@@ -72,12 +104,20 @@ export default function Login({ onLogin }) {
               }}>
               Welcome to Menthera
             </Typography>
-            
-            {/* Champ Email avec icône */}
+
+            {error && (
+              <Alert severity="error" sx={{ mb: 2, borderRadius: 2 }}>
+                {error}
+              </Alert>
+            )}
+
             <TextField
               placeholder="Email"
               variant="standard"
               fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyPress={handleKeyPress}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -95,13 +135,15 @@ export default function Login({ onLogin }) {
                 py: 1.2,
               }}
             />
-            
-            {/* Champ Password avec icône */}
+
             <TextField
               placeholder="Password"
               type="password"
               variant="standard"
               fullWidth
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyPress={handleKeyPress}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -119,10 +161,11 @@ export default function Login({ onLogin }) {
                 py: 1.2,
               }}
             />
-            
+
             <Button
               fullWidth
               variant="contained"
+              disabled={loading}
               sx={{
                 background: "linear-gradient(90deg, #FF5C8D 0%, #FFA247 100%)",
                 color: "#fff",
@@ -133,11 +176,14 @@ export default function Login({ onLogin }) {
                 mt: 1,
                 boxShadow: "0 3px 10px rgba(255,92,141,0.3)",
                 textTransform: "uppercase",
-                letterSpacing: 1.5
+                letterSpacing: 1.5,
+                '&:hover': {
+                  background: "linear-gradient(90deg, #FF5C8D 20%, #FFA247 100%)",
+                }
               }}
-              onClick={onLogin}
+              onClick={handleLogin}
             >
-              Login
+              {loading ? 'Connexion...' : 'Login'}
             </Button>
           </Paper>
         </Box>

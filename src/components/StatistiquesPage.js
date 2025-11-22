@@ -7,10 +7,10 @@ export default function StatistiquesPage() {
       <Paper elevation={4} sx={{
         p: 3,
         borderRadius: 3,
-        background: "rgba(255,255,255,0.08)",
+        background: "rgba(139,92,246,0.12)",
         backdropFilter: "blur(10px)",
         color: "white",
-        border: "1px solid rgba(255,255,255,0.1)"
+        border: "1px solid rgba(192,132,252,0.2)"
       }}>
         <Typography>Graphiques et chiffres clés à venir…</Typography>
       </Paper>

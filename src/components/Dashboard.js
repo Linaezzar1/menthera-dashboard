@@ -10,9 +10,6 @@ import UsersPage from "./UsersPage";
 export default function Dashboard() {
   const [page, setPage] = useState("accueil");
 
-  const handleProfile = () => { /* show profile modal/page */ };
-  const handleLogout = () => { /* déconnecte user */ };
-
   const renderPage = () => {
     if (page === "accueil") return <HomePage />;
     if (page === "statistiques") return <StatistiquesPage />;
@@ -25,10 +22,10 @@ export default function Dashboard() {
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar onChangePage={setPage} currentPage={page} />
       <Box flexGrow={1} sx={{
-        background: "linear-gradient(135deg, #1A0E3E 0%, #2D1B69 50%, #1A0E3E 100%)",
+        background: "linear-gradient(135deg, #1F0B3D 0%, #3D1F6B 50%, #1F0B3D 100%)",
         minHeight: "100vh"
       }}>
-        <Header onProfile={handleProfile} onLogout={handleLogout} />
+        <Header userName="Lina" />
         {renderPage()}
       </Box>
     </Box>

@@ -9,7 +9,7 @@ export default function Sidebar({ onChangePage, currentPage }) {
   return (
     <Box sx={{
       width: 220,
-      bgcolor: "rgba(26,14,62,0.7)",
+      bgcolor: "rgba(31,11,61,0.7)",
       backdropFilter: "blur(10px)",
       height: "100vh",
       boxShadow: "4px 0 16px rgba(0,0,0,0.3)",
@@ -23,12 +23,12 @@ export default function Sidebar({ onChangePage, currentPage }) {
           onClick={() => onChangePage("accueil")}
           sx={{
             '&.Mui-selected': {
-              bgcolor: "rgba(107,95,232,0.2)",
-              borderLeft: "3px solid #6B5FE8"
+              bgcolor: "rgba(139,92,246,0.2)",
+              borderLeft: "3px solid #8B5CF6"
             }
           }}
         >
-          <ListItemIcon><DashboardIcon sx={{ color: "#5DD9F5" }} /></ListItemIcon>
+          <ListItemIcon><DashboardIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Accueil" sx={{ color: "#fff" }} />
         </ListItemButton>
         <ListItemButton
@@ -36,12 +36,12 @@ export default function Sidebar({ onChangePage, currentPage }) {
           onClick={() => onChangePage("statistiques")}
           sx={{
             '&.Mui-selected': {
-              bgcolor: "rgba(107,95,232,0.2)",
-              borderLeft: "3px solid #6B5FE8"
+              bgcolor: "rgba(139,92,246,0.2)",
+              borderLeft: "3px solid #8B5CF6"
             }
           }}
         >
-          <ListItemIcon><TimelineIcon sx={{ color: "#5DD9F5" }} /></ListItemIcon>
+          <ListItemIcon><TimelineIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Statistiques" sx={{ color: "#fff" }} />
         </ListItemButton>
         <ListItemButton
@@ -49,12 +49,12 @@ export default function Sidebar({ onChangePage, currentPage }) {
           onClick={() => onChangePage("historique")}
           sx={{
             '&.Mui-selected': {
-              bgcolor: "rgba(107,95,232,0.2)",
-              borderLeft: "3px solid #6B5FE8"
+              bgcolor: "rgba(139,92,246,0.2)",
+              borderLeft: "3px solid #8B5CF6"
             }
           }}
         >
-          <ListItemIcon><HistoryIcon sx={{ color: "#5DD9F5" }} /></ListItemIcon>
+          <ListItemIcon><HistoryIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Historique" sx={{ color: "#fff" }} />
         </ListItemButton>
         <ListItemButton
@@ -62,12 +62,12 @@ export default function Sidebar({ onChangePage, currentPage }) {
           onClick={() => onChangePage("users")}
           sx={{
             '&.Mui-selected': {
-              bgcolor: "rgba(107,95,232,0.2)",
-              borderLeft: "3px solid #6B5FE8"
+              bgcolor: "rgba(139,92,246,0.2)",
+              borderLeft: "3px solid #8B5CF6"
             }
           }}
         >
-          <ListItemIcon><PeopleAltIcon sx={{ color: "#5DD9F5" }} /></ListItemIcon>
+          <ListItemIcon><PeopleAltIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Utilisateurs" sx={{ color: "#fff" }} />
         </ListItemButton>
       </List>

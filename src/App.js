@@ -1,31 +1,36 @@
-import React, { useState } from "react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "./theme";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import AuthService from "./services/authService";
 
-export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Mets à true pour voir tout de suite le dashboard
+function PrivateRoute({ children }) {
+  const isAuthenticated = AuthService.isAuthenticated();
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
 
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <Routes>
-          <Route
-            path="/login"
-            element={<Login onLogin={() => setIsLoggedIn(true)} />}
-          />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/dashboard"
             element={
-              isLoggedIn ? <Dashboard /> : <Navigate to="/login" replace />
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </Router>
     </ThemeProvider>
   );
 }
+
+export default App;

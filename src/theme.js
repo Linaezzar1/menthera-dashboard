@@ -2,10 +2,10 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#6B5FE8" }, // violet-bleu principal
-    secondary: { main: "#5DD9F5" }, // cyan/bleu clair (accents)
+    primary: { main: "#8B5CF6" }, // violet/mauve principal
+    secondary: { main: "#C084FC" }, // mauve clair (accents)
     background: { 
-      default: "#1A0E3E", // bleu-violet très foncé
+      default: "#1F0B3D", // violet très foncé (presque noir)
       paper: "rgba(255,255,255,0.08)" // cards semi-transparentes
     },
     text: {
