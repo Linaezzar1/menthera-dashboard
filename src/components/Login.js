@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Paper, Typography, TextField, Button, InputAdornment, Alert } from "@mui/material";
+import { Box, Typography, TextField, Button, InputAdornment, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/mentheraLogo1.png";
 import EmailIcon from '@mui/icons-material/Email';
@@ -16,13 +16,9 @@ export default function Login() {
   const handleLogin = async () => {
     setError('');
     setLoading(true);
-
     try {
       await AuthService.login(email, password);
-      
-      // Redirection vers le dashboard après login réussi
       navigate('/dashboard');
-      
     } catch (err) {
       const message = err.response?.data?.message || 'Email ou mot de passe incorrect';
       setError(message);
@@ -31,11 +27,8 @@ export default function Login() {
     }
   };
 
-  // Permettre la soumission avec la touche Enter
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleLogin();
-    }
+    if (e.key === 'Enter') handleLogin();
   };
 
   return (
@@ -55,7 +48,7 @@ export default function Login() {
         display: "flex",
         width: { xs: "95vw", md: "850px" },
         height: { xs: "auto", md: "480px" },
-        borderRadius: 7,
+        borderRadius: 2,
         overflow: "hidden",
         boxShadow: 8,
         background: "rgba(55,31,89,0.06)"
@@ -74,7 +67,7 @@ export default function Login() {
           <img src={Logo} alt="logo" style={{ height: 350, width: 350 }} />
         </Box>
 
-        {/* Bloc droit - Formulaire */}
+        {/* Bloc droit - Formulaire SANS Paper */}
         <Box sx={{
           flex: 1,
           display: "flex",
@@ -82,15 +75,12 @@ export default function Login() {
           justifyContent: "center",
           bgcolor: "transparent",
         }}>
-          <Paper elevation={0}
+          <Box
             sx={{
               width: { xs: "95%", md: 340 },
-              px: 4, py: 5,
-              borderRadius: 5,
-              background: "rgba(255,255,255,0.17)",
-              backdropFilter: "blur(14px)",
-              boxShadow: "0 4px 36px rgba(65,44,130,0.16)"
-            }}>
+              px: 4, py: 5
+            }}
+          >
             <Typography
               variant="h4"
               align="center"
@@ -185,7 +175,7 @@ export default function Login() {
             >
               {loading ? 'Connexion...' : 'Login'}
             </Button>
-          </Paper>
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -19,15 +19,23 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <>
+      {/* Sidebar fixe */}
       <Sidebar onChangePage={setPage} currentPage={page} />
-      <Box flexGrow={1} sx={{
-        background: "linear-gradient(135deg, #1F0B3D 0%, #3D1F6B 50%, #1F0B3D 100%)",
-        minHeight: "100vh"
-      }}>
+
+      {/* Contenu principal décalé */}
+      <Box
+        sx={{
+          marginLeft: "220px", // ✅ Décale exactement de la largeur du sidebar
+          minHeight: "100vh",
+          background: "linear-gradient(135deg, #1F0B3D 0%, #3D1F6B 50%, #1F0B3D 100%)",
+          overflowY: "auto",
+           px: { xs: 3, md: 5 }
+        }}
+      >
         <Header userName="Lina" />
         {renderPage()}
       </Box>
-    </Box>
+    </>
   );
 }

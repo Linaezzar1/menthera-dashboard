@@ -13,8 +13,12 @@ export default function Sidebar({ onChangePage, currentPage }) {
       backdropFilter: "blur(10px)",
       height: "100vh",
       boxShadow: "4px 0 16px rgba(0,0,0,0.3)",
-      pt: 3,
       display: 'flex',
+      position: "fixed",
+       left: 0,
+      top: 0,
+      zIndex: 1000,
+      pt: 3,
       flexDirection: 'column',
     }}>
       <List>
@@ -43,19 +47,6 @@ export default function Sidebar({ onChangePage, currentPage }) {
         >
           <ListItemIcon><TimelineIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Statistiques" sx={{ color: "#fff" }} />
-        </ListItemButton>
-        <ListItemButton
-          selected={currentPage === "historique"}
-          onClick={() => onChangePage("historique")}
-          sx={{
-            '&.Mui-selected': {
-              bgcolor: "rgba(139,92,246,0.2)",
-              borderLeft: "3px solid #8B5CF6"
-            }
-          }}
-        >
-          <ListItemIcon><HistoryIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
-          <ListItemText primary="Historique" sx={{ color: "#fff" }} />
         </ListItemButton>
         <ListItemButton
           selected={currentPage === "users"}
