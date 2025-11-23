@@ -4,6 +4,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import HistoryIcon from '@mui/icons-material/History';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import FlagIcon from '@mui/icons-material/Flag'; // nouvelle icône
 
 export default function Sidebar({ onChangePage, currentPage }) {
   return (
@@ -15,7 +16,7 @@ export default function Sidebar({ onChangePage, currentPage }) {
       boxShadow: "4px 0 16px rgba(0,0,0,0.3)",
       display: 'flex',
       position: "fixed",
-       left: 0,
+      left: 0,
       top: 0,
       zIndex: 1000,
       pt: 3,
@@ -60,6 +61,19 @@ export default function Sidebar({ onChangePage, currentPage }) {
         >
           <ListItemIcon><PeopleAltIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
           <ListItemText primary="Utilisateurs" sx={{ color: "#fff" }} />
+        </ListItemButton>
+        <ListItemButton
+          selected={currentPage === "challenges"}
+          onClick={() => onChangePage("challenges")}
+          sx={{
+            '&.Mui-selected': {
+              bgcolor: "rgba(139,92,246,0.2)",
+              borderLeft: "3px solid #8B5CF6"
+            }
+          }}
+        >
+          <ListItemIcon><FlagIcon sx={{ color: "#C084FC" }} /></ListItemIcon>
+          <ListItemText primary="Challenges" sx={{ color: "#fff" }} />
         </ListItemButton>
       </List>
     </Box>

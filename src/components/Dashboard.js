@@ -4,8 +4,8 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import HomePage from "./HomePage";
 import StatistiquesPage from "./StatistiquesPage";
-import HistoriquePage from "./HistoriquePage";
 import UsersPage from "./UsersPage";
+import ChallengesPage from "./ChallengesPage"; // <-- Ajoute cette importation
 
 export default function Dashboard() {
   const [page, setPage] = useState("accueil");
@@ -13,8 +13,8 @@ export default function Dashboard() {
   const renderPage = () => {
     if (page === "accueil") return <HomePage />;
     if (page === "statistiques") return <StatistiquesPage />;
-    if (page === "historique") return <HistoriquePage />;
     if (page === "users") return <UsersPage />;
+    if (page === "challenges") return <ChallengesPage />; // <-- Ajoute ce bloc
     return <HomePage />;
   };
 
@@ -30,7 +30,7 @@ export default function Dashboard() {
           minHeight: "100vh",
           background: "linear-gradient(135deg, #1F0B3D 0%, #3D1F6B 50%, #1F0B3D 100%)",
           overflowY: "auto",
-           px: { xs: 3, md: 5 }
+          px: { xs: 3, md: 5 }
         }}
       >
         <Header userName="Lina" />

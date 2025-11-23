@@ -47,6 +47,16 @@ const AuthService = {
         return response.data.data;
     },
 
+     /**
+     * Changer le mot de passe de l'utilisateur connecté
+     * @param {string} oldPassword - mot de passe courant
+     * @param {string} newPassword - nouveau mot de passe
+     */
+    async changePassword(oldPassword, newPassword) {
+        const response = await api.put('/auth/change-password', { oldPassword, newPassword });
+        return response.data;
+    },
+
     /**
      * Logout
      */
